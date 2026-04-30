@@ -1,0 +1,126 @@
+{
+  "name": "vicode-ai",
+  "displayName": "vicode - AI Sandbox Visualizer",
+  "description": "VS Code extension that visualizes AI-driven sandbox execution in real-time",
+  "version": "0.1.0",
+  "publisher": "vicode",
+  "main": "./dist/extension.js",
+  "scripts": {
+    "vscode:prepublish": "npm run build",
+    "build": "npm run build:extension && npm run build:webview",
+    "build:extension": "node esbuild.config.js",
+    "build:webview": "tsc -p tsconfig.webview.json && vite build --config vite.config.ts",
+    "dev": "concurrently \"npm run dev:extension\" \"npm run dev:webview\"",
+    "dev:extension": "node esbuild.config.js --watch",
+    "dev:webview": "vite --config vite.config.ts",
+    "lint": "eslint src --ext ts,tsx",
+    "format": "prettier --write \"src/**/*.{ts,tsx,json,css}\"",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "package": "vsce package --no-dependencies",
+    "publish": "vsce publish"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "AI",
+    "Extension Packs",
+    "Other"
+  ],
+  "keywords": [
+    "ai",
+    "sandbox",
+    "visualizer",
+    "llm",
+    "code-execution"
+  ],
+  "activationEvents": [
+    "onView:vicode.chat",
+    "onCommand:vicode.openPanel"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "vicode.openPanel",
+        "title": "Open vicode Panel",
+        "category": "vicode"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "vicode",
+          "title": "vicode",
+          "icon": "assets/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "vicode": [
+        {
+          "type": "webview",
+          "id": "vicode.chat",
+          "name": "Chat"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "vicode",
+      "properties": {
+        "vicode.ai.provider": {
+          "type": "string",
+          "enum": ["openai", "anthropic", "azure"],
+          "default": "openai",
+          "description": "AI provider to use"
+        },
+        "vicode.ai.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "API Key (stored securely in SecretStorage)"
+        },
+        "vicode.ai.model": {
+          "type": "string",
+          "default": "gpt-4o",
+          "description": "Model to use"
+        },
+        "vicode.sandbox.timeout": {
+          "type": "number",
+          "default": 10000,
+          "description": "Sandbox execution timeout (ms)"
+        },
+        "vicode.sandbox.maxMemory": {
+          "type": "number",
+          "default": 512,
+          "description": "Max memory for sandbox process (MB)"
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "zustand": "^4.5.0",
+    "node-pty": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "@types/react": "^18.2.48",
+    "@types/react-dom": "^18.2.18",
+    "@vitejs/plugin-react": "^4.2.1",
+    "concurrently": "^8.2.2",
+    "esbuild": "^0.19.12",
+    "eslint": "^8.56.0",
+    "prettier": "^3.2.4",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.12",
+    "vitest": "^1.2.2",
+    "@vscode/vsce": "^2.24.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/vicode.git"
+  },
+  "license": "MIT"
+}

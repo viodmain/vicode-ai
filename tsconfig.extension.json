@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "sourceMap": true,
+    "types": ["node", "vscode"]
+  },
+  "include": ["src/extension.ts", "src/host/**/*.ts"],
+  "exclude": ["src/webview", "node_modules", "dist"]
+}

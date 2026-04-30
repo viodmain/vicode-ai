@@ -1,0 +1,30 @@
+# VS Code Extension Packaging Ignore List
+# https://code.visualstudio.com/api/working-with-extensions/publishing-extension
+
+# Source files
+src/
+tsconfig*.json
+vite.config.ts
+esbuild.config.js
+
+# Development
+.vscode/
+.idea/
+.git/
+.gitignore
+
+# Testing
+tests/
+coverage/
+
+# Documentation (keep README.md)
+PLAN.md
+PLAN_ZH.md
+
+# CI/CD
+.github/
+
+# Misc
+.DS_Store
+Thumbs.db
+*.log
