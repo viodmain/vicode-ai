@@ -38,12 +38,77 @@
 
 .chat-section {
   border-bottom: 1px solid var(--vscode-panel-border);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 12px;
+  min-height: 100px;
+}
+
+.message {
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  background: var(--vscode-input-background);
+  border-left: 3px solid var(--vscode-button-background);
+}
+
+.message.chat {
+  border-left-color: var(--vscode-charts-blue);
+}
+
+.message.error {
+  border-left-color: var(--vscode-errorForeground);
+}
+
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+  font-size: 11px;
+}
+
+.message-type {
+  font-weight: 600;
+  color: var(--vscode-badge-foreground);
+  background: var(--vscode-badge-background);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.message-time {
+  color: var(--vscode-descriptionForeground);
+}
+
+.message-content {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.message-content pre {
+  margin: 4px 0 0;
+  padding: 8px;
+  background: var(--vscode-terminal-background);
+  color: var(--vscode-terminal-foreground);
+  border-radius: 3px;
+  font-family: var(--vscode-editor-font-family);
+  font-size: 12px;
+  overflow-x: auto;
+}
+
+.message-content .error {
+  color: var(--vscode-errorForeground);
 }
 
 .chat-input {
   display: flex;
   gap: 8px;
-  margin-top: 8px;
 }
 
 .chat-input input {
@@ -70,6 +135,13 @@
   background: var(--vscode-button-hoverBackground);
 }
 
+.sandbox-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
 .sandbox-output {
   flex: 1;
   background: var(--vscode-terminal-background);
@@ -78,12 +150,14 @@
   font-family: var(--vscode-editor-font-family);
   font-size: 13px;
   overflow-y: auto;
-  min-height: 200px;
+  min-height: 150px;
+  border-radius: 4px;
 }
 
 .placeholder {
   color: var(--vscode-descriptionForeground);
   font-style: italic;
+  margin: 0;
 }
 
 h2 {
